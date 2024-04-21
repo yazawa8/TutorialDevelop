@@ -1,37 +1,39 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8">
-    <title>Tutorial of Develop</title>
-    <link rel="stylesheet" th:href="@{/css/user/list.css}">
+<meta charset="utf-8">
+<title>Tutorial of Develop</title>
+<link rel="stylesheet" th:href="@{/css/user/list.css}">
 </head>
 <body>
     <h1>User情報管理システム</h1>
     <h2>User一覧(全件)</h2>
-    <a th:href="@{/user/register}">Userの登録</a>
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>名前</th>
-            <th>性別</th>
-            <th>年齢</th>
-            <th>メールアドレス</th>
-            <!-- 追加ここから -->
-            <th></th>
-            <!-- 追加ここまで -->
-        </tr>
-        <tr th:each="user : ${userlist}">
-            <td th:text="${user.id}"></td>
-            <td th:text="${user.name}"></td>
-            <td th:text="${user.gender}"></td>
-            <td th:text="${user.age}"></td>
-            <td th:text="${user.email}"></td>
-            <!-- 追加ここから -->
-            <td>
-                <a th:href="@{/user/update/{id}/(id=${user.id})}">更新</a>
-            </td>
-            <!-- 追加ここまで -->
-        </tr>
-    </table>
+    <!-- 変更ここから -->
+    <form name="frm" method="post" th:action="@{/user/list}">
+        <a th:href="@{/user/register}">Userの登録</a>
+        <input type="submit" name="deleteRun" id="deleteRun" value="(選択)したUserを一括削除">
+        <table>
+            <tr>
+                <th class="center">(選択)</th>
+                <th>ID</th>
+                <th>名前</th>
+                <th>性別</th>
+                <th>年齢</th>
+                <th>メールアドレス</th>
+                <th></th>
+            </tr>
+            <tr th:each="user : ${userlist}">
+                <td class="center"><input type="checkbox" name="idck" th:value="${user.id}"></td>
+                <td th:text="${user.id}"></td>
+                <td th:text="${user.name}"></td>
+                <td th:text="${user.gender}"></td>
+                <td th:text="${user.age}"></td>
+                <td th:text="${user.email}"></td>
+                <td><a th:href="@{/user/update/{id}/(id=${user.id})}">更新</a></td>
+            </tr>
+        </table>
+    </form>
+    <script th:src="@{/js/user/list.js}"></script>
+    <!-- 変更ここまで -->
 </body>
 </html>
