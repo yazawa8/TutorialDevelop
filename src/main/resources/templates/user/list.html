@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Tutorial of Develop</title>
+    <link rel="stylesheet" th:href="@{/css/user/list.css}">
+</head>
+<body>
+    <h1>User情報管理システム</h1>
+    <h2>User一覧(全件)</h2>
+    <a th:href="@{/user/register}">Userの登録</a>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>名前</th>
+            <th>性別</th>
+            <th>年齢</th>
+            <th>メールアドレス</th>
+        </tr>
+        <tr th:each="user : ${userlist}">
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.gender}"></td>
+            <td th:text="${user.age}"></td>
+            <td th:text="${user.email}"></td>
+        </tr>
+    </table>
+</body>
+</html>
