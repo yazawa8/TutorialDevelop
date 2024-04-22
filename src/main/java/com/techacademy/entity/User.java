@@ -72,5 +72,6 @@ public class User {
             authentication.setUser(null);
         }
     }
+
     // ----- 追加ここまで -----
 }
